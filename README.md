@@ -10,7 +10,6 @@ This project is a backend service built with NestJS and TypeORM, using MongoDB a
 - [Data Model Diagram](#data-model-diagram)
 - [Entities](#entities)
 - [API Endpoints](#api-endpoints)
-- [License](#license)
 
 ## Installation
 
@@ -62,11 +61,11 @@ Below is the data model diagram illustrating the relationships between entities 
 ## API Endpoints
 #### Categories
 - POST /categories: Create a new category
--Request
+  -Request
   ```json
   {
-  "name": "Blenders",
-  "description": "Devices and gadgets"
+    "name": "Blenders",
+    "description": "Devices and gadgets"
   }
   ```
   -Response
@@ -77,8 +76,8 @@ Below is the data model diagram illustrating the relationships between entities 
     "_id": "678566041cac96921e211361"
   }
   ```
-- GET /categories: Get all categories
-- GET /categories/\:id: Get a category by ID
+- GET /categories: Get all categories (For testing purpose)
+- GET /categories/\:id: Get a category by ID (For testing purpose)
 #### Products
 - POST /products: Create a new product
   -Request
@@ -108,4 +107,56 @@ Below is the data model diagram illustrating the relationships between entities 
   }
   ```
 - PATCH /products/\:id: Update a product by ID
+  -Request
+  ```json
+  {
+    "description": "He can FIX IT"
+  }
+  ```
+  -Response
+  ```json
+  {
+    "_id": "678565ab1cac96921e211360",
+    "name": "Fixit Felix",
+    "description": "He can FIX IT",
+    "price": 160,
+    "discount": 5,
+    "image": "https://example.com/images/fixit-felix.jpg",
+    "status": "In Stock",
+    "productCode": "4d4cf0a-0fix2",
+    "categoryId": "67852d0417aa380cd7540a06"
+  }
+  ```
 - GET /products: Get products with optional filters
+  -Request by query
+  ``` 
+  {{base_url}}/products?categoryId=67852d0417aa380cd7540a06&name=Fi
+  ```
+  -Response
+  ```json
+  [
+    {
+      "_id":"6785657d1cac96921e21135f",
+      "name":"Fitness Regime",
+      "description":"An efficient sorting gadget",
+      "price":160,
+      "discount":5,
+      "image":"https://example.com/images/alpha-sorter.jpg",
+      "status":"In Stock",
+      "productCode":"43bbcf7-8egim11",
+      "categoryId":"67852d0417aa380cd7540a06",
+      "discountPrice":152
+    },
+    {
+      "_id":"678565ab1cac96921e211360",
+      "name":"Fixit Felix",
+      "description":"He can FIX IT",
+      "price":160,
+      "discount":5,
+      "image":"https://example.com/images/fixit-felix.jpg",
+      "status":"In Stock",
+      "productCode":"4d4cf0a-0fix2","categoryId":"67852d0417aa380cd7540a06","discountPrice":152
+    }
+  ]
+  ```
+
