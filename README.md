@@ -43,3 +43,69 @@ The application provides a REST API for managing products and categories. You ca
 ## Data Model Diagram
 Below is the data model diagram illustrating the relationships between entities such as products and categories.
 ![Data Model Diagram](/DMD.drawio.svg)
+
+## Entities
+#### Products
+- _id: Unique identifier for the product
+- name: Name of the product
+- description: A brief description of the product
+- price: Price of the product
+- discount: Discount percentage on the product
+- image: Product's image URL
+- status: Availability status (Stock Out / In Stock)
+- productCode: An auto-generated unique identifier
+- categoryId: Foreign key referencing the category
+#### Categories
+- _id: Unique identifier for the category
+- name: Name of the category
+- description: A brief description of the category
+## API Endpoints
+#### Categories
+- POST /categories: Create a new category
+-Request
+  ```json
+  {
+  "name": "Blenders",
+  "description": "Devices and gadgets"
+  }
+  ```
+  -Response
+  ```json
+  {
+    "name": "Blenders",
+    "description": "Devices and gadgets",
+    "_id": "678566041cac96921e211361"
+  }
+  ```
+- GET /categories: Get all categories
+- GET /categories/\:id: Get a category by ID
+#### Products
+- POST /products: Create a new product
+  -Request
+  ```json
+  {
+    "name": "Fixit Felix",
+    "description": "An efficient debugger",
+    "price": 160.00,
+    "discount": 5,
+    "image": "https://example.com/images/fixit-felix.jpg",
+    "status": "In Stock",
+    "categoryId": "67852d0417aa380cd7540a06"
+  }
+  ```
+  -Response
+  ```json
+  {
+    "name": "Fixit Felix",
+    "description": "An efficient debugger",
+    "price": 160,
+    "discount": 5,
+    "image": "https://example.com/images/fixit-felix.jpg",
+    "status": "In Stock",
+    "productCode": "4d4cf0a-0fix2",
+    "categoryId": "67852d0417aa380cd7540a06",
+    "_id": "678565ab1cac96921e211360"
+  }
+  ```
+- PATCH /products/\:id: Update a product by ID
+- GET /products: Get products with optional filters
