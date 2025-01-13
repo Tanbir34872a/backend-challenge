@@ -47,7 +47,7 @@ export class ProductService {
     const products = await this.productRepo.find(query);
     return products.map((product) => ({
       ...product,
-      finalPrice: product.price * (1 - product.discount / 100),
+      discountPrice: product.price * (1 - product.discount / 100),
     }));
   }
 }
